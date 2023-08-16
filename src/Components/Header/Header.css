@@ -1,0 +1,17 @@
+@import '/src/App.css';
+
+.container{
+    max-width:"100%";
+}
+.container-h{
+    background-color: var(--color-primary);;
+}
+.container-f{
+    width: auto;
+    background-color: var(--color-secondary);;
+    padding: 10px;
+    border-radius: 10px;
+}
+.label-txt{
+    color: white;
+}
