@@ -6,6 +6,7 @@ import CustomModal from "../Components/Modal/CustomModal";
 import FormDataHotel from "../Components/Forms/FormDataHotel";
 import PlusIcon from "@rsuite/icons/Plus";
 import ListIcon from "@rsuite/icons/List";
+import { Link } from "react-router-dom";
 
 function Listhotel() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,15 +22,18 @@ function Listhotel() {
   return (
     <>
       <BarTitles titleBar={"Hoteles"}>
-        <Button startIcon={<PlusIcon />} onClick={() => setModalOpen(true)}>
+        <Button className="btn-custom" startIcon={<PlusIcon />} onClick={() => setModalOpen(true)}>
           Nuevo Hotel
         </Button>
+        <Link to={'/managehotels/listreservations'}>
         <Button
+        className="btn-custom"
           startIcon={<ListIcon />}
           style={{ marginLeft: "10px" }}
-        >
+          >
           Lista de Reservas
         </Button>
+        </Link>
       </BarTitles>
       <CardHotel active={true} setModalOpen={setModalOpen} />;
       <CustomModal

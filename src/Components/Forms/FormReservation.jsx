@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { Button, Form, Input, InputNumber, InputPicker, Schema } from "rsuite";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  InputPicker,
+  Schema,
+} from "rsuite";
 import ReviewPassIcon from "@rsuite/icons/ReviewPass";
 import ReviewRefuseIcon from "@rsuite/icons/ReviewRefuse";
 
 const model = Schema.Model({
   name: Schema.Types.StringType().isRequired("This field is required."),
-  email: Schema.Types.StringType().isEmail(
-    "Please enter a valid email address."
-  ),
+  lastname: Schema.Types.StringType().isRequired("Please enter lastname"),
+  birthdate: Schema.Types.DateType().isRequired("Please enter your BirthDate"),
+  genero: Schema.Types.StringType().isRequired("Please enter your genero"),
+  IDtype: Schema.Types.StringType().isRequired("Please enter your tipo of ID"),
+  numberID: Schema.Types.NumberType().isRequired("Please enter your number ID"),
 });
 const TextField = ({ name, label, accepter, ...rest }) => (
   <Form.Group controlId={name}>
@@ -17,7 +27,7 @@ const TextField = ({ name, label, accepter, ...rest }) => (
   </Form.Group>
 );
 
-function FormReservation() {
+function FormReservation({ closeModal }) {
   const [formDataRoom, setFormDataRoom] = useState({
     name: "",
     lastname: "",
@@ -57,7 +67,12 @@ function FormReservation() {
       </Row>
       <Row className="mt-3">
         <Col>
-          <TextField name="birthdate" label="Fecha de Nacimiento" />
+          <TextField
+            name="birthdate"
+            label="Fecha de Nacimiento"
+            accepter={DatePicker}
+            style={{ width: "300px" }}
+          />
         </Col>
         <Col>
           <TextField
@@ -123,12 +138,17 @@ function FormReservation() {
         </Col>
         <Col></Col>
       </Row>
-      <Button className="mt-4" startIcon={<ReviewPassIcon />} type="submit">
+      <Button
+        className="mt-4 btn-custom"
+        startIcon={<ReviewPassIcon />}
+        type="submit"
+      >
         Completar Reserva
       </Button>
       <Button
         className="mt-4"
         startIcon={<ReviewRefuseIcon />}
+        onClick={() => closeModal()}
         style={{ marginLeft: "10px" }}
       >
         Cancelar

@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import { Button, Col, Form, Row, Schema } from "rsuite";
+import { useAuth } from "../../Context/AuthProvider";
 
 const model = Schema.Model({
-  name: Schema.Types.StringType().isRequired("This field is required."),
-  email: Schema.Types.StringType().isEmail(
-    "Please enter a valid email address."
-  ),
+  username: Schema.Types.StringType().isRequired("This field is required."),
+  password: Schema.Types.StringType().isRequired("Please enter a Password"),
 });
 const TextField = ({ name, label, accepter, ...rest }) => (
   <Form.Group controlId={name}>
@@ -17,12 +16,21 @@ const TextField = ({ name, label, accepter, ...rest }) => (
 
 function FormLogin() {
   const [formDatalogin, setFormDatalogin] = useState({});
+  const { isLoggedIn, login } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     if (e) {
-      console.log(formDataRoom);
+      login();
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/managehotels/listhotels");
+    }
+  }, [isLoggedIn]);
 
   return (
     <Form
@@ -32,16 +40,18 @@ function FormLogin() {
       onSubmit={handleSubmit}
     >
       <Row>
-      <h4 className="mb-4 text-center">Inicia sesión para gestionar <br/> tu establecimiento</h4>
-
-        <TextField name="name" label="Nombre" />
-        <TextField name="lastname" label="Apellidos" />
-        <p className="text-center">¿Tienes problemas para iniciar sesión?</p>
+        <h4 className="mb-4 text-center ">
+          Inicia sesión para gestionar <br /> tu establecimiento
+        </h4>
+        <p className="mb-4 text-center text-secondary">user: any , pass: any </p>
+        <TextField name="username" label="Usuario" />
+        <TextField name="password" label="Contraseña" type="password" />
+        <p className="text-center" > <a href="/">¿Tienes problemas para iniciar sesión? </a></p>
       </Row>
-      <Row className="d-flex bd-highlight">
-        <Link to={'listhotels'}>
-        <Button className="flex-fill bd-highlight">Iniciar Sesión</Button>
-        </Link>
+      <Row className="d-flex  justify-content-center">
+        <Button type="submit" className="btn-custom flex-fill ">
+          Iniciar Sesión
+        </Button>
       </Row>
     </Form>
   );

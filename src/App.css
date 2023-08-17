@@ -13,8 +13,13 @@
   .rs-panel-body{
     padding: 5px;
   }
-  .rs-btn {
+  .btn-custom.rs-btn {
     background-color: #004299;
     color: #FDF9F9;
+  }
+  .btn-login.rs-btn {
+    background-color: white;
+    color: gray;
   } 
+  
   

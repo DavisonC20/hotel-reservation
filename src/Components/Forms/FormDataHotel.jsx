@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import { Button, Form, Row, Schema, Toggle, Uploader } from "rsuite";
 
 const model = Schema.Model({
-  name: Schema.Types.StringType().isRequired("This field is required."),
-  email: Schema.Types.StringType().isEmail(
-    "Please enter a valid email address."
+  namehotel: Schema.Types.StringType().isRequired("This field is required."),
+  ubication: Schema.Types.StringType().isRequired(
+    "The Ubication is required"
+  ),
+  typeroom: Schema.Types.StringType().isRequired(
+    "The type room is required"
+  ),
+  costtype: Schema.Types.StringType().isRequired(
+    "The type price  is required"
+  ),
+  impuesto: Schema.Types.StringType().isRequired(
+    "The impuesto is required"
   ),
 });
 const TextField = ({ name, label, accepter, ...rest }) => (
@@ -54,13 +63,13 @@ function FormDataHotel() {
         />
       </Row>
       <Row>
-        <Button size="sm">Nueva Habitación</Button>
+        <Button  className="btn-custom" size="sm">Nueva Habitación</Button>
       </Row>
       <Row className="d-flex">
         <TextField name="typeroom" label="Tipo de Habitación" />
         <TextField name="costtype" label="Costo Base" />
         <TextField
-          name="lastname"
+          name="imgroom"
           label="Adjuntar Foto del Hotel"
           accepter={Uploader}
           listType="picture-text"
@@ -81,7 +90,7 @@ function FormDataHotel() {
         />
       </Row>
       <Row className="d-flex">
-        <Button>Editar Hotel</Button>
+        <Button className="btn-custom">Editar Hotel</Button>
         <Button style={{marginLeft:'10px'}}>Cancelar</Button>
 
       </Row>

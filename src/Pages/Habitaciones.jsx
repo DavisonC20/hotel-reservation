@@ -22,7 +22,7 @@ function Habitaciones() {
         open={modalOpen}
         onClose={closeModal}
         titleModal={"Reserva para Habitación tipo Ejecutiva"}
-        children={<FormReservation/>}
+        children={<FormReservation closeModal={closeModal}/>}
       />
     </>
   );

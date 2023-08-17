@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Modal, Placeholder } from "rsuite";
 
-function CustomModal({ open, onClose,titleModal,children }) {
+function CustomModal({ open, onClose, titleModal, children }) {
   const handleClose = () => {
     onClose();
   };
@@ -11,9 +11,7 @@ function CustomModal({ open, onClose,titleModal,children }) {
       <Modal.Header>
         <Modal.Title>{titleModal}</Modal.Title>
       </Modal.Header>
-      <Modal.Body >
-        {children}
-      </Modal.Body>
+      <Modal.Body>{children}</Modal.Body>
     </Modal>
   );
 }
