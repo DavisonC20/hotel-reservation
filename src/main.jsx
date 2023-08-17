@@ -15,6 +15,7 @@ import { useRoutes } from 'react-router-dom';
 import AdminHotels from "./Pages/AdminHotels";
 import Login from "./Pages/Login";
 import Listhotel from "./Pages/Listhotel";
+import ListReservations from "./Pages/ListReservations";
 
 const routes = createRoutesFromChildren([
   <Route path="/" element={<App />}>
@@ -24,7 +25,9 @@ const routes = createRoutesFromChildren([
   <Route path="managehotels/*" element={<AdminHotels />}>
         <Route index element={<Login />} />
         <Route path="listhotels" element={<Listhotel />} />
-  </Route>
+        <Route path="listreservations" element={<ListReservations />}/> 
+  </Route>,
+
 ]);
 
 const router = createBrowserRouter(routes);
