@@ -4,7 +4,7 @@ import CardHotel from '../Components/CardtHotel/CardHotel'
 function Hotels() {
     return (
         <>
-            <CardHotel />
+            <CardHotel  active={false}/>
         </>
     )
 }

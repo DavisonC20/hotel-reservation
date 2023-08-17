@@ -14,14 +14,6 @@ function CustomModal({ open, onClose,titleModal,children }) {
       <Modal.Body >
         {children}
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={handleClose} appearance="primary">
-          Ok
-        </Button>
-        <Button onClick={handleClose} appearance="subtle">
-          Cancel
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 }

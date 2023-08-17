@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Button, Form, Input, InputNumber, InputPicker, Schema } from "rsuite";
+import ReviewPassIcon from "@rsuite/icons/ReviewPass";
+import ReviewRefuseIcon from "@rsuite/icons/ReviewRefuse";
 
 const model = Schema.Model({
   name: Schema.Types.StringType().isRequired("This field is required."),
@@ -14,7 +16,14 @@ const TextField = ({ name, label, accepter, ...rest }) => (
     <Form.Control size="sm" name={name} accepter={accepter} {...rest} />
   </Form.Group>
 );
+
 function FormReservation() {
+  const [formDataRoom, setFormDataRoom] = useState({
+    name: "",
+    lastname: "",
+    // ... otros campos del formulario
+  });
+
   const selectGen = ["Masculino", "Femenino"].map((item) => ({
     label: item,
     value: item,
@@ -23,8 +32,20 @@ function FormReservation() {
     label: item,
     value: item,
   }));
+
+  const handleSubmit = (e) => {
+    if (e) {
+      console.log(formDataRoom);
+    }
+  };
+
   return (
-    <Form model={model} style={{ marginLeft: "4%", marginTop: "5%" }}>
+    <Form
+      model={model}
+      style={{ marginLeft: "4%", marginTop: "5%" }}
+      onChange={setFormDataRoom}
+      onSubmit={handleSubmit}
+    >
       <Row>
         <Col>
           <TextField name="name" label="Nombre" />
@@ -70,41 +91,48 @@ function FormReservation() {
           />
         </Col>
         <Col></Col>
-        </Row>
-        <Row>
-          <Col>
-            <TextField name="email" label="Email" />
-          </Col>
-          <Col>
-            <TextField
-              name="telefono"
-              label="Telefono de Contacto"
-              accepter={Input}
-              type="number"
-            />
-          </Col>
-          <Col></Col>
       </Row>
-        <Row className="mt-3 mb-3">
-        <span>Contacto de Emergencia:</span>
-        </Row>
       <Row>
-          <Col>
-            <TextField name="email" label="Email" />
-          </Col>
-          <Col>
-            <TextField
-              name="telefono"
-              label="Telefono de Contacto"
-              accepter={Input}
-              type="number"
-            />
-          </Col>
-          <Col></Col>
+        <Col>
+          <TextField name="email" label="Email" />
+        </Col>
+        <Col>
+          <TextField
+            name="phonenumber"
+            label="Telefono de Contacto"
+            accepter={Input}
+            type="number"
+          />
+        </Col>
+        <Col></Col>
       </Row>
-      {/*       <Button appearance="primary" type="submit" >
-        Submit
-      </Button> */}
+      <Row className="mt-3 mb-3">
+        <span>Contacto de Emergencia:</span>
+      </Row>
+      <Row>
+        <Col>
+          <TextField name="emailCEmergency" label="Email" />
+        </Col>
+        <Col>
+          <TextField
+            name="telefonoCEmergency"
+            label="Telefono de Contacto"
+            accepter={Input}
+            type="number"
+          />
+        </Col>
+        <Col></Col>
+      </Row>
+      <Button className="mt-4" startIcon={<ReviewPassIcon />} type="submit">
+        Completar Reserva
+      </Button>
+      <Button
+        className="mt-4"
+        startIcon={<ReviewRefuseIcon />}
+        style={{ marginLeft: "10px" }}
+      >
+        Cancelar
+      </Button>
     </Form>
   );
 }

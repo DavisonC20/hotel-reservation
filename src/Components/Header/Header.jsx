@@ -6,13 +6,13 @@ import PersonCounter from "./PersonCounter";
 import RangeDate from "./RangeDate";
 import InputPlace from "./InputPlace";
 import { Link } from "react-router-dom";
-function Header() {
+function Header({children}) {
   return (
     <Container
       className="container-h d-flex align-items-center justify-content-between"
       style={{ maxWidth: "100%", height: "113px" }}
     >
-      <Link to={"/"} style={{textDecoration:"none"}}>
+      <Link to={"/"} style={{ textDecoration: "none" }}>
         <h4 className="text-white">Alojamiento de Hoteles</h4>
       </Link>
       <Row className="container-f d-flex">
@@ -20,7 +20,9 @@ function Header() {
         <RangeDate />
         <PersonCounter />
       </Row>
-      <Button>Gestionar Hotel</Button>
+      <Link to={'/managehotels'}>
+        <Button>Gestionar Hotel</Button>
+      </Link>
     </Container>
   );
 }
